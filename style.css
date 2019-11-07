@@ -1,9 +1,9 @@
 
 .container {
 	margin: auto;
-	width: 200px;
-	height: 300px;
-
+	width: 300px;
+	height: 400px;
+	border: 1px solid black;
 }
 
 .window {
@@ -22,3 +22,10 @@
   background-color: black;
   bottom: 20%;
 } 
+
+#left {
+	float: left;
+}
+#right {
+	float: right;
+}
