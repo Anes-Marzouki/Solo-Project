@@ -21,6 +21,13 @@
   border: 3px solid black;
   background-color: black;
   bottom: 20%;
+}
+#bullet {
+	position: absolute;
+	left: 0%;
+	background-color: red;
+	height: 5px;
+	width: 5px;
 } 
 
 #left {

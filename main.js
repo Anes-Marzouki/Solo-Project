@@ -10,9 +10,21 @@ $( document ).ready(function() {
 
 	$(document).keydown(function(event){
 		console.log(event.keyCode)
+		switch(event.keyCode){
+			case 32: //space
+			return function shoot (){
+			$('.square').append("<div class=bullet></div>");
+			$('.bullet').css('left', '+=50');
+			};
 
-		if (event.keyCode == 39) {
-			$('.square').css('left', '+=10');
+			// break;
+			case 39: //righ
+				if ($('.square').css('left') > 100%) {
+				$('.square').css('left', '+=10');
+			};
+				// break;
+			case 37: //left
+				$('.square').css('left', '-=10');
 		}
 	})
 
@@ -30,19 +42,12 @@ Because of event bubbling, all key presses will make their way up the
 DOM to the document object unless explicitly stopped.
 
 
-document.on('keydown' , function() {
-        switch (event.keyCode) {
-           case 37: Left key
-           		;
-              break;
-           case 38: Up key
-           		; 
-              break;
-           case 39: Right key
-           		;
-              break;
-           case 40: Down key
-           		;
-              break;
-        }
+event.keyCode {
+	32: space
+	37: Left key
+	38: Up key
+    39: Right key         
+    40: Down key
+
+    } 
 */
