@@ -18,10 +18,14 @@ console.log(nowTime)
             //test this return otherwise try (max - min + 1).
 	}
 
-//ammo count on click inside window
-	$('.window').on('click', function(){
+//ammo count on click inside screen
+	$('.screen').on('click', function(){
+		if ( ammo !== 0){
 		ammo--;
 		$('.ammo').html(ammo);
+		}else {
+			$('.ammo').html('Out of ammo');
+		}
 	})
 //timer
 	//start the timer with a function maybe .onclick start timer with a startgame var set to true?
@@ -80,8 +84,18 @@ console.log(nowTime)
 //stop and adds score, an ending mechanic.
 	function stop(){
 	  $('.square').addClass('stop'); // stop pointer event
+	  $('.screen').addClass('stop');
 	  $('.score').html('Your score is: ' + score);
 	}
+})
+
+$('#restart').on('click', function() {
+	//needs to clear the interval.
+	
+	$('.square').addClass('stop');
+	$('.screen').addClass('stop');
+
+	startgame = false;
 })
 
 
