@@ -4,8 +4,8 @@ $( document ).ready(function() {
 
 	var timer = null;//set it to undefined ? or null?
 	var startGame = false;
- 	var score = $(".score").text();
-	var nowTime = $(".timer").text(); //global from <div>text like 30s
+ 	var score = $('.score').text();
+	var nowTime = $('.timer').text(); //global from <div>text like 30s
 //logs
 console.log(score);
 console.log(nowTime)
@@ -29,35 +29,51 @@ console.log(nowTime)
 	function timerFn(){
 	  	timer = setInterval( function(){
 		    nowTime--; // 30s--
-		    $(".timer").html(nowTime);
-		    if(nowTime < 1) {
+		    $('.timer').html(nowTime);
+		    if (nowTime < 5) {
+		    	$('.timer').css('color', 'red');
+		    }
+		    if (nowTime < 1) {
 		      clearInterval(timer);
 		      stop();
 		    }
 	    },1000);
 	}
 //clicking on square (element:maybe change it to an img) calls the move function below
-	$(".square").click(function(){
+	$('.square').click(function(){
 	  updateScore();  
 	  move( $(this) ); //this refers to the square.
 	});
 	//move!!
 		function move(element){
-		  var left = randomNumb(2,75);
-		  $(element).css("left", left + "%");
+		  var left = randomNumb(2,80);
+		  var top = randomNumb(2, 80);
+		  var width = randomNumb(2,10);
+		  $(element).css('left', left + '%');
+		  $(element).css('top', top + '%');
+		  $(element).css('width', '-=2' + '%');
+		  $(element).css('height', '-=2' + '%');
+		  //anim
+		  blink();
+		  // $(element).css('animation-name', 'moving');
+		  // $(element).css('animation-name', 'moving');
 	          //for now this moves the elmt back and forth
 	          //using the CSS' left value, try and implement
 	          //a more dynamic movement pattern.
 		}
+		function blink(){
+			$('.square').fadeOut(80);
+			$('.square').fadeIn(80);
+		}
 	//increases score var
 		function updateScore(){
 		  score++;
-		  $(".score").html(score);
+		  $('.score').html(score);
 		}
 //stop and adds score, an ending mechanic.
 	function stop(){
-	  $(".square").addClass("stop"); // stop pointer event
-	  $(".score").html("Your score is: " + score);
+	  $('.square').addClass('stop'); // stop pointer event
+	  $('.score').html('Your score is: ' + score);
 	}
 })
 

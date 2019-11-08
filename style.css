@@ -12,6 +12,7 @@
     position: absolute;
     color: black;
     text-align: center;
+    pointer-events: none;
     //pointer events no false.
 }
 
@@ -21,17 +22,26 @@
 	width: 200px;
 	height: 200px;
 	margin: auto;
+	cursor: none;
+
 }
+
+@keyframes moving {
+	0% {left: 1%; top: 1%;}
+	50% {left: 2%; top: 3%;}
+	100% {left: 5%; top: 2%;}
+}
+
 .square {
-  position: absolute;
+  position: relative;
   left: 10%;
+  top: 10%;
   width: 30px;
   height: 30px;
   border: 3px solid black;
   background-color: black;
-  bottom: 20%;
 }
-.square:stop {
+.stop {
 	pointer-events: none;
 //stop pointer
 }
