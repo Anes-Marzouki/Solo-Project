@@ -12,18 +12,17 @@ $( document ).ready(function() {
 	//logs
 	// console.log(score);
 	// console.log(nowTime)
-	//Pause and restar button
 
+
+//Pause and restar button
 	$('.pause').on('click', function() {
 		if (pause = false) {
 			pause = true;
 			$('.square').addClass('stop');
 			$('.screen').addClass('stop');
-			timer = null;
+			clearInterval(timer);
 		}
 	});
-
-
 	$('.restart').on('click', function() {
 		//needs to clear the interval.
 		// stop();
@@ -36,7 +35,6 @@ $( document ).ready(function() {
 		restartDialog();
 		highScore();
 	});
-	
 	function highScore() {
 		if (score > highestScore) {
 			highestScore = score;
@@ -80,7 +78,7 @@ $( document ).ready(function() {
 	}
 	//Base skelaton for the mini game!
 //generates random number for the move function.
-	function randomNumb(min,max){
+	function randomNumb(min,max) {
 	    return Math.floor( Math.random() * ( max - min ) + min + 1 );
             //test this return otherwise try (max - min + 1).
 	}
