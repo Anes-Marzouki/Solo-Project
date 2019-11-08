@@ -65,7 +65,7 @@
 	float: right;
 }
 
-#restart {
+.restart {
 	left: 35%;
     position: relative;
     margin-top: 10px;

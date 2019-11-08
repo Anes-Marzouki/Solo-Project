@@ -2,15 +2,42 @@ $( document ).ready(function() {
 	// console.log('hi');
 //set of Variables
 
-	var timer = null;//set it to undefined ? or null?
+	var timer;//set it to undefined ? or null?
 	var startGame = false;
 	var ammo = $('.ammo').text();
  	var score = $('.score').text();
 	var nowTime = $('.timer').text(); //global from <div>text like 30s
 //logs
-console.log(score);
-console.log(nowTime)
+// console.log(score);
+// console.log(nowTime)
 
+$('.restart').on('click', function() {
+	//needs to clear the interval.
+	// stop();
+	// clearInterval(timer);
+	$('.square').addClass('stop');
+	$('.screen').addClass('stop');
+	startgame = false;
+	nowTime = 1;
+	console.log(nowTime);
+	console.log(startgame);
+})
+
+
+//starts the timer
+	function timerFn() {
+	  	timer = setInterval( function(){
+		    nowTime--; // 30s--
+		    $('.timer').html(nowTime);
+		    if (nowTime < 5) {
+		    	$('.timer').css('color', 'red');
+		    }
+		    if (nowTime < 1) {
+		      clearInterval( timer );
+		      stop();
+		    }
+	    },1000);
+	}
 	//Base skelaton for the mini game!
 //generates random number for the move function.
 	function randomNumb(min,max){
@@ -36,20 +63,6 @@ console.log(nowTime)
 			startGame = true;
 		}
 	})
-//starts the timer
-	function timerFn(){
-	  	timer = setInterval( function(){
-		    nowTime--; // 30s--
-		    $('.timer').html(nowTime);
-		    if (nowTime < 5) {
-		    	$('.timer').css('color', 'red');
-		    }
-		    if (nowTime < 1) {
-		      clearInterval(timer);
-		      stop();
-		    }
-	    },1000);
-	}
 //clicking on square (element:maybe change it to an img) calls the move function below
 	$('.square').click(function(){
 	  updateScore();  
@@ -89,14 +102,6 @@ console.log(nowTime)
 	}
 })
 
-$('#restart').on('click', function() {
-	//needs to clear the interval.
-	
-	$('.square').addClass('stop');
-	$('.screen').addClass('stop');
-
-	startgame = false;
-})
 
 
 
