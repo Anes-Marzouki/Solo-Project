@@ -57,8 +57,9 @@ event.keyCode {
     40: Down key
     } 
 
+//Base skelaton for the mini game!
 
- //timer
+//timer
  	var score = $(".score").text(),
 	var currentTime = $(".timer").text(); //global from <div>text like 30s
 
@@ -89,21 +90,25 @@ event.keyCode {
 	function move(element){
 	  var left = randomNumb(2,75);
 	  $(element).css("left", left + "%");
+          //for now this moves the elmt back and forth
+          //using the CSS' left value, try and implement
+          //a more dynamic movement pattern.
 	}
 
 //generates random number for the move function.
 	function randomNumb(min,max){
 	    return Math.floor( Math.random() * ( max - min ) + min + 1 );
+            //test this return otherwise try (max - min + 1).
 	}
 
 
-//increses score var
+//increases score var
 	function updateScore(){
 	  score++;
 	  $(".score").html(score);
 	}
 
-//stop and adds score
+//stop and adds score, an ending mechanic.
 	function stop(){
 	  $(".ball").addClass("stop"); // stop pointer event
 	  $(".score").html("Your score is: " + score);
