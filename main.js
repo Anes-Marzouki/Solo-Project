@@ -4,6 +4,7 @@ $( document ).ready(function() {
 
 	var timer = null;//set it to undefined ? or null?
 	var startGame = false;
+	var ammo = $('.ammo').text();
  	var score = $('.score').text();
 	var nowTime = $('.timer').text(); //global from <div>text like 30s
 //logs
@@ -16,6 +17,12 @@ console.log(nowTime)
 	    return Math.floor( Math.random() * ( max - min ) + min + 1 );
             //test this return otherwise try (max - min + 1).
 	}
+
+//ammo count on click inside window
+	$('.window').on('click', function(){
+		ammo--;
+		$('.ammo').html(ammo);
+	})
 //timer
 	//start the timer with a function maybe .onclick start timer with a startgame var set to true?
 		// like if startgame is false .click on element with class start ?? $('.start').click(f() {start the timer and sets startgame to true}) 
