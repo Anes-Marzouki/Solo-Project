@@ -1,9 +1,18 @@
 
 .container {
+	display: block;
 	margin: auto;
 	width: 300px;
 	height: 400px;
 	border: 1px solid black;
+}
+
+.score {
+	width: 100%;
+    position: absolute;
+    color: white;
+    text-align: center;
+    //pointer events no false.
 }
 
 .window {
@@ -22,6 +31,10 @@
   background-color: black;
   bottom: 20%;
 }
+.square:stop {
+//stop pointer
+}
+
 #bullet {
 	position: absolute;
 	left: 0%;
@@ -36,3 +49,4 @@
 #right {
 	float: right;
 }
+
