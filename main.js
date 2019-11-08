@@ -4,24 +4,64 @@ $( document ).ready(function() {
 
 	var timer;//set it to undefined ? or null?
 	var startGame = false;
+	var pause = false;
 	var ammo = $('.ammo').text();
  	var score = $('.score').text();
+ 	var highestScore = $('.highscore').text();
 	var nowTime = $('.timer').text(); //global from <div>text like 30s
-//logs
-// console.log(score);
-// console.log(nowTime)
+	//logs
+	// console.log(score);
+	// console.log(nowTime)
+	//Pause and restar button
 
-$('.restart').on('click', function() {
-	//needs to clear the interval.
-	// stop();
-	// clearInterval(timer);
-	$('.square').addClass('stop');
-	$('.screen').addClass('stop');
-	startgame = false;
-	nowTime = 1;
-	console.log(nowTime);
-	console.log(startgame);
-})
+	$('.pause').on('click', function() {
+		if (pause = false) {
+			pause = true;
+			$('.square').addClass('stop');
+			$('.screen').addClass('stop');
+			timer = null;
+		}
+	});
+
+
+	$('.restart').on('click', function() {
+		//needs to clear the interval.
+		// stop();
+		// clearInterval(timer);
+		$('.square').addClass('stop');
+		$('.screen').addClass('stop');
+		startgame = false;
+		nowTime = 1;
+		$('#message').append(score);
+		restartDialog();
+		highScore();
+	});
+	
+	function highScore() {
+		if (score > highestScore) {
+			highestScore = score;
+			$('.highscore').html(highestScore);	
+		}
+	}
+
+//Dialog box func.
+	function restartDialog() {
+	    $(function() {
+	    	$( "#dialog" ).dialog({
+	    		modal: true,
+	    		buttons: {
+	    			Restart: function(){
+	    				$('.score').html(0); score = 0;
+	    				$('.ammo').html(5); ammo = 5;
+	    				$('.timer').html(10);
+	    				$('.square').removeClass('stop');
+						$('.screen').removeClass('stop');
+	    				$(this).dialog('close');
+	    			}
+	    		}
+	    	});
+	  	});
+	  };
 
 
 //starts the timer
@@ -31,7 +71,7 @@ $('.restart').on('click', function() {
 		    $('.timer').html(nowTime);
 		    if (nowTime < 5) {
 		    	$('.timer').css('color', 'red');
-		    }
+		    }else {$('.timer').css('color', 'black');}
 		    if (nowTime < 1) {
 		      clearInterval( timer );
 		      stop();
@@ -98,7 +138,7 @@ $('.restart').on('click', function() {
 	function stop(){
 	  $('.square').addClass('stop'); // stop pointer event
 	  $('.screen').addClass('stop');
-	  $('.score').html('Your score is: ' + score);
+	  $('.score').html(score);
 	}
 })
 
