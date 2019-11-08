@@ -67,6 +67,7 @@ event.keyCode {
 
 
 //starts the timer
+	var timer; //global set it to undefined ? or null?
 	function timer(){
 	  	timer = setInterval( function(){
 		    currentTime--; // 30s--
