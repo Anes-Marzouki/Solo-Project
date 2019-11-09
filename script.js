@@ -1,8 +1,8 @@
 $(function () {
 
-    //variables
+    //variables for selection.
     var container = $('#container');
-    var square = $('#square');
+    var square = $('#square');//the element, can be an image.
     var pole = $('.pole');
     var pole_1 = $('#pole_1');
     var pole_2 = $('#pole_2');
@@ -10,7 +10,7 @@ $(function () {
     var speed_span = $('#speed');
     var restart_btn = $('#restart_btn');
 
-    //initial
+    //initial Vals of container, pole and square.
     var container_width = parseInt(container.width());
     var container_height = parseInt(container.height());
     var pole_initial_position = parseInt(pole.css('right'));
