@@ -1,6 +1,6 @@
 $(function () {
 
-    //saving dom objects to variables
+//variables selector
     var container = $('#container');
     var square = $('#square');
     var pole = $('.pole');
@@ -10,7 +10,7 @@ $(function () {
     var speed_span = $('#speed');
     var restart_btn = $('#restart_btn');
 
-    //saving some initial setup
+//Inits
     var container_width = parseInt(container.width());
     var container_height = parseInt(container.height());
     var pole_initial_position = parseInt(pole.css('right'));
@@ -18,15 +18,12 @@ $(function () {
     var square_left = parseInt(square.css('left'));
     var square_height = parseInt(square.height());
     var speed = 10;
-
-    //some other declarations
     var go_up = false;
     var score_updated = false;
     var game_over = false;
 
 
     var the_game = setInterval(function () {
-
         if (collision(square, pole_1) || collision(square, pole_2) || parseInt(square.css('top')) <= 0 || parseInt(square.css('top')) > container_height - square_height) {
 
             stop_the_game();
@@ -34,8 +31,7 @@ $(function () {
         } else {
 
             var pole_current_position = parseInt(pole.css('right'));
-
-            //update the score when the poles have passed the square successfully
+            //if poles poles passed the square updates score!!!!
             if (pole_current_position > container_width - square_left) {
                 if (score_updated === false) {
                     score.text(parseInt(score.text()) + 1);
@@ -43,11 +39,11 @@ $(function () {
                 }
             }
 
-            //check whether the poles went out of the container
+//if poles went out of container
             if (pole_current_position > container_width) {
                 var new_height = parseInt(Math.random() * 100);
 
-                //change the pole's height
+//modifies the poles hight
                 pole_1.css('height', pole_initial_height + new_height);
                 pole_2.css('height', pole_initial_height - new_height);
 
@@ -60,17 +56,15 @@ $(function () {
                 pole_current_position = pole_initial_position;
             }
 
-            //move the poles
+//
             pole.css('right', pole_current_position + speed);
-
             if (go_up === false) {
                 go_down();
             }
         }
-
     }, 40);
 
-
+//Mouse and keyboard input
 $('#container').on('mousedown', function () { //Mouse click On
         if (go_up === false && game_over === false) {
             go_up = setInterval(up, 50);
@@ -97,7 +91,7 @@ $('#container').on('mouseup', function () { //Mouse click On
         }
     });
 
-
+//
     function go_down() {
         square.css('top', parseInt(square.css('top')) + 5);
     }
@@ -105,7 +99,7 @@ $('#container').on('mouseup', function () { //Mouse click On
     function up() {
         square.css('top', parseInt(square.css('top')) - 10);
     }
-
+//stop the game
     function stop_the_game() {
         clearInterval(the_game);
         game_over = true;
@@ -116,30 +110,28 @@ $('#container').on('mouseup', function () { //Mouse click On
         location.reload();
     });
 
-    function collision($div1, $div2) {
-        var x1 = $div1.offset().left;
-        var y1 = $div1.offset().top;
-        var h1 = $div1.outerHeight(true);
-        var w1 = $div1.outerWidth(true);
+
+// collision check the coordinates left and top of the first element against the second element.
+    function collision($elm1, $elm2) {
+        var x1 = $elm1.offset().left;
+        var y1 = $elm1.offset().top;
+        var h1 = $elm1.outerHeight(true); // to get the margin of the element
+        var w1 = $elm1.outerWidth(true);
         var b1 = y1 + h1;
         var r1 = x1 + w1;
-        var x2 = $div2.offset().left;
-        var y2 = $div2.offset().top;
-        var h2 = $div2.outerHeight(true);
-        var w2 = $div2.outerWidth(true);
+        var x2 = $elm2.offset().left;
+        var y2 = $elm2.offset().top;
+        var h2 = $elm2.outerHeight(true);
+        var w2 = $elm2.outerWidth(true);
         var b2 = y2 + h2;
         var r2 = x2 + w2;
-
         if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) return false;
         return true;
     }
-
-
-
 });
 
 
-
+//-------------------------------------------------
 
 // $(document).keydown(function(event){
     //  console.log(event.keyCode)
