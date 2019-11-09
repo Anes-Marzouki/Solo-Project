@@ -1,6 +1,6 @@
 $(function () {
 
-    //saving dom objects to variables
+    //variables
     var container = $('#container');
     var square = $('#square');
     var pole = $('.pole');
@@ -10,7 +10,7 @@ $(function () {
     var speed_span = $('#speed');
     var restart_btn = $('#restart_btn');
 
-    //saving some initial setup
+    //initial
     var container_width = parseInt(container.width());
     var container_height = parseInt(container.height());
     var pole_initial_position = parseInt(pole.css('right'));
@@ -19,7 +19,7 @@ $(function () {
     var square_height = parseInt(square.height());
     var speed = 10;
 
-    //some other declarations
+    //some other inits
     var go_up = false;
     var score_updated = false;
     var game_over = false;
@@ -35,7 +35,7 @@ $(function () {
 
             var pole_current_position = parseInt(pole.css('right'));
 
-            //update the score when the poles have passed the square successfully
+            //update score when the poles have passed the square
             if (pole_current_position > container_width - square_left) {
                 if (score_updated === false) {
                     score.text(parseInt(score.text()) + 1);
@@ -43,7 +43,7 @@ $(function () {
                 }
             }
 
-            //check whether the poles went out of the container
+            //check whether the poles went out of the window
             if (pole_current_position > container_width) {
                 var new_height = parseInt(Math.random() * 100);
 
